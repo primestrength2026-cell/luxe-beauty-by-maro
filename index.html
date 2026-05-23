@@ -1,273 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Beauty Salon</title>
-<!-- Font Awesome for icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-<style>
-/* ... (keep your existing styles here) ... */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  background-color: #f4f4f4;
-  color: #333;
-  direction: ltr; /* Default left-to-right */
-}
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-header h1 {
-  margin: 0;
-}
-.language-switch {
-  background: none;
-  border: 2px solid #fff;
-  color: #fff;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-section {
-  padding: 20px;
-}
-.services {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.service-card {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 15px;
-  width: calc(33.333% - 20px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.service-image {
-  width: 100%;
-  height: 150px;
-  background-color: #ccc;
-  margin-bottom: 10px;
-  border-radius: 8px;
-}
-.service-title {
-  font-size: 1.2em;
-  margin: 10px 0 5px 0;
-}
-.service-desc {
-  font-size: 0.9em;
-  text-align: center;
-  margin-bottom: 10px;
-}
-.service-price {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.book-btn {
-  background-color: #333;
-  color: #fff;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.contact-info, #booking {
-  margin-top: 20px;
-}
-footer {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
-  text-align: center;
-}
-@media(max-width: 768px) {
-  .service-card {
-    width: calc(50% - 20px);
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luxe Beauty By Maro</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#fff;
+      color:#222;
+      overflow-x:hidden;
+    }
+
+    ::selection{
+      background:gold;
+      color:#000;
+    }
+
+    header{
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(10px);
+      background:rgba(255,255,255,0.8);
+      box-shadow:0 2px 20px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      font-size:32px;
+      font-weight:700;
+      color:#d4af37;
+      letter-spacing:1px;
+    }
+
+    nav{
+      display:flex;
+      gap:25px;
+      align-items:center;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#333;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#d4af37;
+    }
+
+    .search-box{
+      position:relative;
+    }
+
+    .search-box input{
+      padding:10px 40px 10px 15px;
+      border-radius:30px;
+      border:none;
+      outline:none;
+      background:#f5f5f5;
+      width:220px;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      flex-direction:column;
+      padding:120px 8% 50px;
+      background:
+      linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.9)),
+      url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2070&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+    }
+
+    .hero h1{
+      font-size:70px;
+      color:#d4af37;
+      animation:fadeUp 1s ease;
+    }
+
+    .hero p{
+      max-width:700px;
+      margin-top:20px;
+      font-size:20px;
+      color:#555;
+      animation:fadeUp 1.5s ease;
+    }
+
+    .hero button{
+      margin-top:35px;
+      padding:16px 40px;
+      border:none;
+      border-radius:50px;
+      background:linear-gradient(45deg,#d4af37,#f5df7d);
+      color:#fff;
+      font-size:18px;
+      cursor:pointer;
+      transition:0.4s;
+      box-shadow:0 10px 30px rgba(212,175,55,0.4);
+      animation:glow 2s infinite alternate;
+    }
+
+    .hero button:hover{
+      transform:scale(1.08);
+    }
+
+    .section-title{
+      text-align:center;
+      margin:80px 0 50px;
+      font-size:42px;
+      color:#d4af37;
+    }
+
+    .services{
+      padding:20px 8% 100px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:35px;
+    }
+
+    .service-card{
+      background:#fff;
+      border-radius:25px;
+      padding:30px;
+      position:relative;
+      overflow:hidden;
+      transition:0.5s;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      animation:float 5s infinite ease-in-out;
+    }
+
+    .service-card:hover{
+      transform:translateY(-12px) scale(1.02);
+      box-shadow:0 20px 50px rgba(212,175,55,0.25);
+    }
+
+    .service-card::before{
+      content:'';
+      position:absolute;
+      width:200%;
+      height:200%;
+      background:linear-gradient(
+      45deg,
+      transparent,
+      rgba(212,175,55,0.2),
+      transparent);
+      top:-50%;
+      left:-50%;
+      transform:rotate(25deg);
+      animation:shine 5s linear infinite;
+    }
+
+    .service-card h3{
+      font-size:28px;
+      color:#d4af37;
+      margin-bottom:15px;
+      position:relative;
+      z-index:2;
+    }
+
+    .service-card p{
+      color:#555;
+      line-height:1.7;
+      position:relative;
+      z-index:2;
+    }
+
+    .price{
+      font-size:24px;
+      font-weight:700;
+      color:#111;
+      margin:20px 0;
+      position:relative;
+      z-index:2;
+    }
+
+    .book-btn{
+      display:inline-block;
+      text-decoration:none;
+      padding:14px 28px;
+      border-radius:40px;
+      background:linear-gradient(45deg,#d4af37,#f0d76e);
+      color:#fff;
+      font-weight:600;
+      transition:0.4s;
+      position:relative;
+      z-index:2;
+    }
+
+    .book-btn:hover{
+      transform:scale(1.08);
+    }
+
+    .about{
+      padding:100px 8%;
+      display:flex;
+      flex-wrap:wrap;
+      gap:50px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      max-width:500px;
+      border-radius:30px;
+      box-shadow:0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .about-text{
+      flex:1;
+    }
+
+    .about-text h2{
+      font-size:48px;
+      color:#d4af37;
+      margin-bottom:20px;
+    }
+
+    .about-text p{
+      line-height:1.9;
+      color:#555;
+      font-size:18px;
+    }
+
+    footer{
+      background:#111;
+      color:#fff;
+      text-align:center;
+      padding:40px 20px;
+      margin-top:80px;
+    }
+
+    footer h2{
+      color:#d4af37;
+      margin-bottom:10px;
+    }
+
+    @keyframes shine{
+      0%{
+        transform:translateX(-100%) rotate(25deg);
+      }
+      100%{
+        transform:translateX(100%) rotate(25deg);
+      }
+    }
+
+    @keyframes glow{
+      from{
+        box-shadow:0 0 15px rgba(212,175,55,0.5);
+      }
+      to{
+        box-shadow:0 0 35px rgba(212,175,55,1);
+      }
+    }
+
+    @keyframes float{
+      0%,100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-10px);
+      }
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:48px;
+      }
+
+      nav{
+        display:none;
+      }
+
+      .hero p{
+        font-size:17px;
+      }
+
+      .about{
+        flex-direction:column;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
 <header>
-  <h1 id="header-title">Beauty Salon</h1>
-  <button class="language-switch" onclick="switchLanguage()" id="langBtn">عربى</button>
+  <div class="logo">LUXE BEAUTY</div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search services..." onkeyup="searchServices()">
+    </div>
+  </nav>
 </header>
 
-<section id="services-section">
-  <h2 id="services-title">Our Services</h2>
-  <div class="services" id="services">
-    <!-- Services will be inserted here by JS -->
-  </div>
+<section class="hero">
+  <h1>Luxe Beauty By Maro</h1>
+  <p>
+    Discover luxury skincare services with a globally elegant experience.
+    Glow with confidence, beauty, and premium care.
+  </p>
+
+  <button onclick="window.location.href='https://wa.me/96171589542?text=Hello%20Luxe%20Beauty%20By%20Maro%2C%20I%20want%20to%20book%20a%20service'">
+    Book Service
+  </button>
 </section>
 
-<section id="contact-section">
-  <h2 id="contact-title">Contact Us</h2>
-  <div class="contact-info" id="contact-info">
-    <p><strong>Phone:</strong> +1234567890</p>
-    <p><strong>Address:</strong> 123 Beauty St, City</p>
+<h2 class="section-title" id="services">Our Luxury Services</h2>
+
+<section class="services">
+
+  <div class="service-card">
+    <h3>Hydra Facial</h3>
+    <p>Deep cleansing and hydration treatment for glowing skin and fresh beauty.</p>
+    <div class="price">$35</div>
+
+    <a class="book-btn"
+    href="https://wa.me/96171589542?text=Hello%20I%20want%20to%20book%20Hydra%20Facial%20for%20$35">
+    Book Service
+    </a>
   </div>
+
+  <div class="service-card">
+    <h3>Gold Glow Facial</h3>
+    <p>Luxury gold facial treatment for radiant skin and anti-aging effects.</p>
+    <div class="price">$50</div>
+
+    <a class="book-btn"
+    href="https://wa.me/96171589542?text=Hello%20I%20want%20to%20book%20Gold%20Glow%20Facial%20for%20$50">
+    Book Service
+    </a>
+  </div>
+
+  <div class="service-card">
+    <h3>Acne Treatment</h3>
+    <p>Professional acne skincare solutions for clear and healthy skin.</p>
+    <div class="price">$40</div>
+
+    <a class="book-btn"
+    href="https://wa.me/96171589542?text=Hello%20I%20want%20to%20book%20Acne%20Treatment%20for%20$40">
+    Book Service
+    </a>
+  </div>
+
+  <div class="service-card">
+    <h3>Skin Brightening</h3>
+    <p>Advanced brightening treatment for smooth and luminous skin.</p>
+    <div class="price">$45</div>
+
+    <a class="book-btn"
+    href="https://wa.me/96171589542?text=Hello%20I%20want%20to%20book%20Skin%20Brightening%20for%20$45">
+    Book Service
+    </a>
+  </div>
+
+  <div class="service-card">
+    <h3>Luxury Spa Care</h3>
+    <p>Relaxing premium skincare and spa treatment with luxury experience.</p>
+    <div class="price">$60</div>
+
+    <a class="book-btn"
+    href="https://wa.me/96171589542?text=Hello%20I%20want%20to%20book%20Luxury%20Spa%20Care%20for%20$60">
+    Book Service
+    </a>
+  </div>
+
+  <div class="service-card">
+    <h3>Anti Aging Therapy</h3>
+    <p>Professional anti-aging skincare to restore youthful glowing skin.</p>
+    <div class="price">$55</div>
+
+    <a class="book-btn"
+    href="https://wa.me/96171589542?text=Hello%20I%20want%20to%20book%20Anti%20Aging%20Therapy%20for%20$55">
+    Book Service
+    </a>
+  </div>
+
 </section>
 
-<div id="booking">
-  <h2 id="booking-title">Book an Appointment</h2>
-  <p id="booking-info">Click on a service to book via WhatsApp.</p>
-</div>
+<section class="about" id="about">
 
-<footer>
-  <p>&copy; 2024 Beauty Salon</p>
+  <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1974&auto=format&fit=crop">
+
+  <div class="about-text">
+    <h2>About Luxe Beauty</h2>
+
+    <p>
+      Luxe Beauty By Maro is a premium skincare experience designed to bring elegance,
+      confidence, and luxury to every client. We focus on advanced skincare solutions,
+      glowing results, and a relaxing beauty atmosphere with world-class service quality.
+    </p>
+  </div>
+
+</section>
+
+<footer id="contact">
+  <h2>Luxe Beauty By Maro</h2>
+  <p>Phone Number: +961 71 589 542</p>
+  <p>Luxury Skincare Experience ✨</p>
 </footer>
 
 <script>
-// Service data in both languages
-const servicesData = {
-  en: [
-    {
-      title: "Facial Treatment",
-      desc: "Experience our rejuvenating facial treatments.",
-      price: "$50"
-    },
-    {
-      title: "Haircut & Styling",
-      desc: "Get a stylish haircut and styling.",
-      price: "$40"
-    },
-    {
-      title: "Manicure & Pedicure",
-      desc: "Pamper your hands and feet.",
-      price: "$30"
-    },
-    {
-      title: "Aromatherapy Massage",
-      desc: "Relax with soothing aromatherapy massage.",
-      price: "$90"
-    },
-    {
-      title: "Eyebrow Shaping",
-      desc: "Define and shape your eyebrows.",
-      price: "$30"
-    },
-    {
-      title: "Makeup Session",
-      desc: "Professional makeup for special occasions.",
-      price: "$70"
-    },
-    {
-      title: "Deep Cleansing Facial",
-      desc: "Deep cleaning for clear skin.",
-      price: "$60"
+
+function searchServices() {
+
+  let input = document.getElementById('searchInput').value.toLowerCase();
+
+  let cards = document.querySelectorAll('.service-card');
+
+  cards.forEach(card => {
+
+    let title = card.querySelector('h3').innerText.toLowerCase();
+
+    if(title.includes(input)){
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
     }
-  ],
-  ar: [
-    {
-      title: "علاج الوجه",
-      desc: "اختبر علاجات الوجه المنعشة والمجددة.",
-      price: "₪180"
-    },
-    {
-      title: "قص وتصفيف الشعر",
-      desc: "احصل على قصة شعر وتصفيف أنيقة.",
-      price: "₪150"
-    },
-    {
-      title: "مانيكير وپديكور",
-      desc: "دلل يديك وقدميك.",
-      price: "₪100"
-    },
-    {
-      title: "تدليك بالروائح",
-      desc: "استرخِ مع تدليك الروائح المهدئ.",
-      price: "₪330"
-    },
-    {
-      title: "تشكيل الحواجب",
-      desc: "حدد شكل حواجبك.",
-      price: "₪100"
-    },
-    {
-      title: "جلسة مكياج",
-      desc: "مكياج احترافي للمناسبات الخاصة.",
-      price: "₪230"
-    },
-    {
-      title: "تنظيف عميق للبشرة",
-      desc: "تنظيف عميق لبشرة نقية.",
-      price: "₪200"
-    }
-  ]
-};
 
-let currentLanguage = 'en';
-
-function switchLanguage() {
-  currentLanguage = currentLanguage === 'en' ? 'ar' : 'en';
-  document.getElementById('langBtn').innerText = currentLanguage === 'en' ? 'عربى' : 'English';
-  updateContent();
-}
-
-function updateContent() {
-  // Update header, titles
-  document.getElementById('header-title').innerText = currentLanguage === 'en' ? 'Beauty Salon' : 'منتجع التجميل';
-  document.getElementById('services-title').innerText = currentLanguage === 'en' ? 'Our Services' : 'خدماتنا';
-  document.getElementById('contact-title').innerText = currentLanguage === 'en' ? 'Contact Us' : 'اتصل بنا';
-  document.getElementById('booking-title').innerText = currentLanguage === 'en' ? 'Book an Appointment' : 'احجز موعدًا';
-  document.getElementById('booking-info').innerText = currentLanguage === 'en' ? 'Click on a service to book via WhatsApp.' : 'انقر على خدمة للحجز عبر واتساب.';
-  document.querySelector('footer p').innerHTML = '&copy; 2024 Beauty Salon';
-
-  // Render services
-  renderServices();
-}
-
-function renderServices() {
-  const servicesContainer = document.getElementById('services');
-  servicesContainer.innerHTML = '';
-
-  servicesData[currentLanguage].forEach(service => {
-    const card = document.createElement('div');
-    card.className = 'service-card';
-
-    const title = document.createElement('div');
-    title.className = 'service-title';
-    title.innerText = service.title;
-
-    const desc = document.createElement('div');
-    desc.className = 'service-desc';
-    desc.innerText = service.desc;
-
-    const price = document.createElement('div');
-    price.className = 'service-price';
-    price.innerText = service.price;
-
-    const button = document.createElement('button');
-    button.className = 'book-btn';
-    button.innerHTML = '<i class="fas fa-calendar-check"></i> ' + (currentLanguage === 'en' ? 'Book Service' : 'احجز الخدمة');
-    button.onclick = () => bookService(service.title, service.price);
-
-    card.appendChild(title);
-    card.appendChild(desc);
-    card.appendChild(price);
-    card.appendChild(button);
-
-    servicesContainer.appendChild(card);
   });
+
 }
 
-function bookService(serviceName, price) {
-  alert(`${currentLanguage === 'en' ? 'Booking' : 'الحجز'}: ${serviceName} - ${price}`);
-}
-
-// Initialize content
-updateContent();
 </script>
 
 </body>
