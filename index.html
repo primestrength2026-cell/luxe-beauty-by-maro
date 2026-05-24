@@ -1,1124 +1,657 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luxe Beauty by Maro</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --gold: #C9A84C;
-  --gold-light: #E8C96A;
-  --gold-pale: #F5E6B8;
-  --gold-deep: #8B6914;
-  --gold-shine: #D4A017;
-  --gold-bright: #FFD700;
-  --white: #FFFFFF;
-  --cream: #FDF8F0;
-  --cream2: #FAF3E3;
-  --warm: #F7EDDA;
-  --text-dark: #2C1F05;
-  --text-mid: #5C4A1E;
-  --text-light: #8B7355;
-  --glass-border: rgba(201,168,76,0.25);
-  --shadow-gold: rgba(201,168,76,0.18);
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUXE BEAUTY BY MARO</title>
 
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-body {
-  font-family:'Cormorant Garamond', serif;
-  background: var(--white);
-  color: var(--text-dark);
-  overflow-x:hidden;
-  cursor:none;
-}
-body[dir="rtl"] { font-family:'Cairo', sans-serif; }
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
 
-/* CURSOR */
-#cursor {
-  width:10px; height:10px;
-  background: var(--gold);
-  border-radius:50%;
-  position:fixed; top:0; left:0;
-  pointer-events:none; z-index:9999;
-  transform:translate(-50%,-50%);
-}
-#cursor-ring {
-  width:38px; height:38px;
-  border:1.5px solid var(--gold);
-  border-radius:50%;
-  position:fixed; top:0; left:0;
-  pointer-events:none; z-index:9998;
-  transform:translate(-50%,-50%);
-  transition:all 0.16s ease;
-  opacity:0.6;
-}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#fff;
+      color:#111;
+      overflow-x:hidden;
+    }
 
-/* PARTICLES */
-#particles { position:fixed; inset:0; pointer-events:none; z-index:0; }
+    body.ar{
+      font-family:'Cairo',sans-serif;
+      direction:rtl;
+    }
 
-/* SCROLLBAR */
-::-webkit-scrollbar { width:4px; }
-::-webkit-scrollbar-track { background:var(--cream); }
-::-webkit-scrollbar-thumb { background:var(--gold); border-radius:2px; }
+    :root{
+      --gold:#d4af37;
+      --light-gold:#f8e7a1;
+      --dark:#111;
+      --white:#fff;
+    }
 
-/* ── NAV ── */
-nav {
-  position:fixed; top:0; width:100%; z-index:1000;
-  padding:18px 5%;
-  display:flex; align-items:center; justify-content:space-between;
-  background:rgba(255,255,255,0.94);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--glass-border);
-  transition:all 0.4s;
-}
-nav.scrolled {
-  padding:12px 5%;
-  box-shadow:0 4px 30px var(--shadow-gold);
-}
-.logo {
-  font-family:'Cinzel', serif;
-  font-size:clamp(1rem,2vw,1.35rem);
-  letter-spacing:0.28em;
-  background:linear-gradient(135deg, var(--gold-deep), var(--gold-shine), var(--gold));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  text-decoration:none;
-}
-.logo span { display:block; font-size:0.52em; letter-spacing:0.55em; opacity:0.75; margin-top:2px; }
-.nav-links { display:flex; gap:2.5rem; list-style:none; }
-.nav-links a {
-  color:var(--text-mid); font-size:0.78rem; letter-spacing:0.18em;
-  text-decoration:none; text-transform:uppercase;
-  position:relative; transition:color 0.3s;
-}
-.nav-links a::after {
-  content:''; position:absolute; bottom:-4px; left:0;
-  width:0; height:1px; background:var(--gold-shine);
-  transition:width 0.4s;
-}
-.nav-links a:hover { color:var(--gold-deep); }
-.nav-links a:hover::after { width:100%; }
-.lang-btn {
-  background:transparent;
-  border:1.5px solid var(--gold);
-  color:var(--gold-deep);
-  padding:7px 20px;
-  font-family:'Cinzel', serif;
-  font-size:0.72rem; letter-spacing:0.2em;
-  cursor:pointer; border-radius:2px;
-  transition:all 0.35s; position:relative; overflow:hidden;
-}
-.lang-btn::before {
-  content:''; position:absolute; inset:0;
-  background:linear-gradient(135deg,var(--gold-deep),var(--gold));
-  transform:scaleX(0); transform-origin:right;
-  transition:transform 0.35s ease;
-}
-.lang-btn:hover::before { transform:scaleX(1); transform-origin:left; }
-.lang-btn:hover { color:var(--white); }
-.lang-btn span { position:relative; z-index:1; }
+    /* SCROLLBAR */
+    ::-webkit-scrollbar{
+      width:10px;
+    }
 
-/* ── HERO ── */
-#hero {
-  height:100vh; position:relative;
-  display:flex; align-items:center; justify-content:center;
-overflow:hidden;
-}
-.hero-bg {
-  position:absolute; inset:0;
-  background-image:url('https://i.imgur.com/yWlQQ9K.jpeg');
-  background-size:cover; background-position:center 20%;
-  transform:scale(1.08);
-  animation:heroZoom 20s ease-in-out infinite alternate;
-}
-@keyframes heroZoom { from{transform:scale(1.08)} to{transform:scale(1.14)} }
-.hero-overlay {
-  position:absolute; inset:0;
-  background:linear-gradient(
-    180deg,
-    rgba(255,255,255,0.12) 0%,
-    rgba(253,248,240,0.55) 50%,
-    rgba(253,248,240,0.82) 100%
-  );
-}
-.hero-overlay2 {
-  position:absolute; inset:0;
-  background:radial-gradient(ellipse at center top, rgba(201,168,76,0.08) 0%, transparent 65%);
-}
-.hero-content {
-  position:relative; z-index:2;
-  text-align:center; padding:0 24px;
-}
-.hero-badge {
-  display:inline-block;
-  border:1px solid var(--gold);
-  padding:6px 26px; margin-bottom:1.8rem;
-  font-size:0.68rem; letter-spacing:0.5em; text-transform:uppercase;
-  color:var(--gold-deep); opacity:0;
-  animation:fadeUp 1s 0.3s forwards;
-  background:rgba(255,255,255,0.7);
-}
-.hero-title {
-  font-family:'Cinzel', serif;
-  font-size:clamp(3.2rem,9vw,8rem);
-  font-weight:700; line-height:0.95;
-  letter-spacing:0.06em;
-  background:linear-gradient(135deg,var(--gold-deep) 0%,var(--gold-shine) 40%,var(--gold) 70%,var(--gold-deep) 100%);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  opacity:0; animation:fadeUp 1s 0.6s forwards;
-  filter:drop-shadow(0 2px 12px rgba(201,168,76,0.2));
-}
-.hero-sub {
-  font-family:'Cinzel', serif;
-  font-size:clamp(0.9rem,2.2vw,1.6rem);
-  letter-spacing:0.55em; color:var(--text-mid);
-  margin-top:0.4rem; opacity:0;
-  animation:fadeUp 1s 0.9s forwards;
-}
-.hero-line {
-  width:0; height:1px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  margin:1.8rem auto;
-  animation:lineGrow 1.2s 1.2s forwards;
-}
-@keyframes lineGrow { to{width:240px} }
-.hero-tagline {
-  font-size:clamp(1rem,1.8vw,1.3rem);
-  color:var(--text-mid); font-style:italic;
-  letter-spacing:0.06em; opacity:0;
-  animation:fadeUp 1s 1.4s forwards;
-}
-.hero-cta {
-  margin-top:2.5rem; display:flex; gap:1.2rem;
-  justify-content:center; flex-wrap:wrap;
-  opacity:0; animation:fadeUp 1s 1.7s forwards;
-}
-@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+    ::-webkit-scrollbar-thumb{
+      background:linear-gradient(var(--gold),#fff);
+      border-radius:20px;
+    }
 
-/* BUTTONS */
-.btn-gold {
-  display:inline-block; padding:14px 42px;
-  background:linear-gradient(135deg,var(--gold-deep),var(--gold-shine),var(--gold-light));
-  color:var(--white); text-decoration:none;
-  font-family:'Cinzel', serif; font-size:0.76rem; letter-spacing:0.22em;
-  text-transform:uppercase; border-radius:1px;
-  box-shadow:0 6px 28px rgba(201,168,76,0.35);
-  transition:all 0.4s; position:relative; overflow:hidden;
-  cursor:pointer; border:none;
-}
-.btn-gold::after {
-  content:''; position:absolute; top:-50%; left:-60%;
-  width:40%; height:200%;
-  background:rgba(255,255,255,0.25);
-  transform:skewX(-25deg);
-  transition:left 0.6s ease;
-}
-.btn-gold:hover::after { left:130%; }
-.btn-gold:hover { box-shadow:0 10px 38px rgba(201,168,76,0.5); transform:translateY(-2px); }
-.btn-outline {
-  display:inline-block; padding:13px 40px;
-  border:1.5px solid var(--gold); color:var(--gold-deep);
-  text-decoration:none; font-family:'Cinzel', serif;
-  font-size:0.76rem; letter-spacing:0.22em; text-transform:uppercase;
-  border-radius:1px; transition:all 0.4s; cursor:pointer; background:transparent;
-}
-.btn-outline:hover { background:var(--gold); color:var(--white); }
+    /* ANIMATIONS */
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(60px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
 
-/* ── SECTION SHARED ── */
-section { position:relative; z-index:1; }
-.section-label {
-  font-size:0.66rem; letter-spacing:0.55em; text-transform:uppercase;
-  color:var(--gold); margin-bottom:0.5rem; display:block;
-}
-.section-title {
-  font-family:'Cinzel', serif;
-  font-size:clamp(1.9rem,4.5vw,3.2rem);
-color:var(--text-dark);
-  line-height:1.15; margin-bottom:1rem;
-}
-.section-title span {
-  background:linear-gradient(135deg,var(--gold-deep),var(--gold-shine));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-}
-.section-desc {
-  color:var(--text-light); font-size:1.05rem;
-  max-width:540px; line-height:1.85; font-style:italic;
-}
-.divider {
-  width:72px; height:2px;
-  background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright),var(--gold));
-  margin:1.2rem 0; border-radius:1px;
-}
-.divider.center { margin:1.2rem auto; }
+    @keyframes float{
+      0%{transform:translateY(0px);}
+      50%{transform:translateY(-10px);}
+      100%{transform:translateY(0px);}
+    }
 
-/* REVEAL */
-.reveal { opacity:0; transform:translateY(38px); transition:opacity 0.85s ease,transform 0.85s ease; }
-.reveal-left { opacity:0; transform:translateX(-45px); transition:opacity 0.85s ease,transform 0.85s ease; }
-.reveal-right { opacity:0; transform:translateX(45px); transition:opacity 0.85s ease,transform 0.85s ease; }
-.reveal.visible,.reveal-left.visible,.reveal-right.visible { opacity:1; transform:none; }
+    @keyframes shine{
+      0%{background-position:-200px;}
+      100%{background-position:200px;}
+    }
 
-/* ── MARQUEE ── */
-.marquee-strip {
-  overflow:hidden;
-  background:linear-gradient(90deg,var(--gold-deep),var(--gold-shine),var(--gold),var(--gold-shine),var(--gold-deep));
-  padding:11px 0;
-}
-.marquee-inner { display:inline-block; animation:marquee 24s linear infinite; }
-.marquee-inner span {
-  font-family:'Cinzel', serif; font-size:0.7rem;
-  letter-spacing:0.38em; color:var(--white);
-  margin:0 2.5rem; text-transform:uppercase;
-}
-@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    section{
+      padding:90px 8%;
+      animation:fadeUp 1s ease;
+    }
 
-/* ── ABOUT ── */
-#about {
-  padding:110px 5%;
-  background:var(--cream);
-}
-.about-grid {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:6rem; align-items:center; max-width:1200px; margin:0 auto;
-}
-.about-image-wrap { position:relative; }
-.about-frame {
-  position:relative; overflow:hidden;
-  border:1px solid var(--glass-border);
-  box-shadow:0 20px 60px var(--shadow-gold);
-}
-.about-frame img { width:100%; display:block; transition:transform 0.9s ease; }
-.about-frame:hover img { transform:scale(1.04); }
-.about-frame::before {
-  content:''; position:absolute; inset:0; z-index:1;
-  background:linear-gradient(135deg,rgba(201,168,76,0.08),transparent 55%);
-  pointer-events:none;
-}
-.corner { position:absolute; width:38px; height:38px; border-color:var(--gold); border-style:solid; z-index:2; }
-.corner.tl{top:-7px;left:-7px;border-width:2px 0 0 2px}
-.corner.tr{top:-7px;right:-7px;border-width:2px 2px 0 0}
-.corner.bl{bottom:-7px;left:-7px;border-width:0 0 2px 2px}
-.corner.br{bottom:-7px;right:-7px;border-width:0 2px 2px 0}
-.about-badge {
-  position:absolute; bottom:-18px; right:-18px; z-index:3;
-  width:105px; height:105px; border-radius:50%;
-  background:linear-gradient(135deg,var(--gold-deep),var(--gold-shine));
-  display:flex; align-items:center; justify-content:center;
-  box-shadow:0 8px 28px rgba(201,168,76,0.45);
-  animation:rotateSlow 14s linear infinite;
-}
-@keyframes rotateSlow { to{transform:rotate(360deg)} }
-.about-badge-inner {
-  text-align:center; animation:rotateSlow 14s linear infinite reverse;
-  font-family:'Cinzel', serif; color:var(--white); line-height:1.2;
-}
-.about-badge-inner strong { font-size:1.5rem; display:block; }
-.about-badge-inner small { font-size:0.48rem; letter-spacing:0.2em; }
-.about-text p { color:var(--text-mid); line-height:1.95; font-size:1.02rem; margin-bottom:1.1rem; }
-.stat-row { display:flex; gap:2.5rem; margin-top:2rem; flex-wrap:wrap; }
-.stat-item { text-align:center; }
-.stat-num {
-  font-family:'Cinzel', serif; font-size:2rem;
-  background:linear-gradient(135deg,var(--gold-deep),var(--gold-shine));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  display:block;
-}
-.stat-lbl { font-size:0.68rem; letter-spacing:0.22em; color:var(--text-light); text-transform:uppercase; }
+    /* NAVBAR */
+    nav{
+      width:100%;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:999;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(10px);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 8%;
+      box-shadow:0 2px 20px rgba(0,0,0,0.08);
+    }
 
-/* ── SERVICES ── */
-#services {
-padding:110px 5%;
-  background:var(--white);
-}
-.services-header { text-align:center; margin-bottom:4.5rem; }
-.services-grid {
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:2rem; max-width:1280px; margin:0 auto;
-}
-.service-card {
-  background:var(--cream);
-  border:1px solid var(--glass-border);
-  padding:2.8rem 2.2rem;
-  position:relative; overflow:hidden;
-  transition:all 0.5s ease;
-  box-shadow:0 4px 20px rgba(201,168,76,0.06);
-}
-.service-card::before {
-  content:''; position:absolute; top:0; left:0;
-  width:100%; height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold-shine),transparent);
-  transform:scaleX(0); transition:transform 0.5s;
-}
-.service-card:hover::before { transform:scaleX(1); }
-.service-card:hover {
-  border-color:rgba(201,168,76,0.4);
-  transform:translateY(-7px);
-  box-shadow:0 20px 50px rgba(201,168,76,0.15);
-  background:var(--warm);
-}
-.service-icon { font-size:2.2rem; margin-bottom:1.3rem; display:block; transition:transform 0.4s; }
-.service-card:hover .service-icon { transform:scale(1.18) rotate(6deg); }
-.service-name {
-  font-family:'Cinzel', serif; font-size:1.08rem;
-  color:var(--text-dark); margin-bottom:0.75rem; letter-spacing:0.06em;
-}
-.service-desc { color:var(--text-light); font-size:0.93rem; line-height:1.8; margin-bottom:1.6rem; }
-.service-line { width:36px; height:1px; background:var(--gold); margin-bottom:1.6rem; opacity:0.6; }
-.book-btn {
-  display:inline-flex; align-items:center; gap:0.5rem;
-  padding:11px 26px;
-  background:transparent; border:1.5px solid var(--gold);
-  color:var(--gold-deep); font-family:'Cinzel', serif;
-  font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase;
-  text-decoration:none; transition:all 0.4s; cursor:pointer;
-  position:relative; overflow:hidden;
-}
-.book-btn::before {
-  content:''; position:absolute; inset:0;
-  background:linear-gradient(135deg,var(--gold-deep),var(--gold-shine));
-  transform:scaleX(0); transform-origin:left;
-  transition:transform 0.4s; z-index:0;
-}
-.book-btn:hover::before { transform:scaleX(1); }
-.book-btn:hover { color:var(--white); }
-.book-btn span,.book-btn .wa-ico { position:relative; z-index:1; }
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:var(--gold);
+      letter-spacing:2px;
+    }
 
-/* ── BEFORE / AFTER ── */
-#results {
-  padding:110px 5%;
-  background:var(--cream2);
-}
-.results-header { text-align:center; margin-bottom:4.5rem; }
-.ba-grid {
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
-  gap:2.5rem; max-width:1200px; margin:0 auto;
-}
-.ba-card {
-  border:1px solid var(--glass-border);
-  background:var(--white);
-  overflow:hidden;
-  box-shadow:0 8px 30px var(--shadow-gold);
-  transition:transform 0.4s, box-shadow 0.4s;
-}
-.ba-card:hover { transform:translateY(-5px); box-shadow:0 18px 50px rgba(201,168,76,0.18); }
-.ba-slider {
-  position:relative; height:380px; overflow:hidden;
-  cursor:ew-resize; user-select:none;
-}
-.ba-before,.ba-after {
-  position:absolute; inset:0;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Cinzel', serif; font-size:2.2rem;
-  font-weight:700; letter-spacing:0.08em;
-}
-.ba-before {
-  background:linear-gradient(135deg,#e8dcc8 0%,#d4c4a0 100%);
-  color:rgba(139,105,20,0.45);
-}
-.ba-after {
-  background:linear-gradient(135deg,#fdf8f0 0%,#f5e6b8 50%,#fdf8f0 100%);
-  color:var(--gold-deep);
-  clip-path:inset(0 50% 0 0);
-  transition:clip-path 0.05s;
-}
-.ba-after::before {
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(ellipse at center,rgba(201,168,76,0.15),transparent 70%);
-  pointer-events:none;
-}
-.ba-handle {
-  position:absolute; top:0; left:50%; width:2px; height:100%;
-  background:var(--gold); transform:translateX(-50%);
-  display:flex; align-items:center; justify-content:center;
-  transition:left 0.05s;
-}
-.ba-handle::after {
-  content:'↔'; position:absolute;
-  width:34px; height:34px; border-radius:50%;
-background:var(--gold-shine); color:var(--white);
-  display:flex; align-items:center; justify-content:center;
-  font-size:0.85rem; box-shadow:0 4px 14px rgba(201,168,76,0.5);
-  cursor:ew-resize;
-}
-.ba-labels {
-  display:flex; justify-content:space-between;
-  padding:0.9rem 1.3rem;
-  border-top:1px solid var(--glass-border);
-  background:var(--cream);
-}
-.ba-label { font-family:'Cinzel', serif; font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; }
-.ba-label.before { color:var(--text-light); }
-.ba-label.after { color:var(--gold-deep); }
-.ba-title {
-  padding:1rem 1.3rem 1.3rem;
-  font-family:'Cinzel', serif; font-size:0.9rem;
-  color:var(--text-dark); letter-spacing:0.1em; text-align:center;
-  background:var(--white);
-}
+    .lang-btn{
+      border:none;
+      background:linear-gradient(45deg,var(--gold),#fff);
+      padding:12px 22px;
+      border-radius:40px;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.4s;
+    }
 
-/* ── FEEDBACK / TESTIMONIALS ── */
-#testimonials {
-  padding:110px 5%;
-  background:var(--white);
-}
-.test-header { text-align:center; margin-bottom:4.5rem; }
-.test-grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:2rem; max-width:1200px; margin:0 auto;
-}
-@media(max-width:900px) { .test-grid { grid-template-columns:1fr 1fr; } }
-@media(max-width:580px) { .test-grid { grid-template-columns:1fr; } }
-.feedback-card {
-  background:var(--cream);
-  border:1px solid var(--glass-border);
-  overflow:hidden;
-  transition:all 0.45s;
-  box-shadow:0 4px 20px rgba(201,168,76,0.07);
-  position:relative;
-}
-.feedback-card:hover {
-  transform:translateY(-8px);
-  box-shadow:0 20px 50px rgba(201,168,76,0.18);
-  border-color:rgba(201,168,76,0.4);
-}
-.feedback-photo-wrap {
-  position:relative;
-  width:100%; padding-top:100%;
-  overflow:hidden; background:var(--warm);
-  cursor:pointer;
-}
-.feedback-photo-wrap img {
-  position:absolute; inset:0;
-  width:100%; height:100%; object-fit:cover;
-  transition:transform 0.6s ease;
-}
-.feedback-card:hover .feedback-photo-wrap img { transform:scale(1.06); }
-.feedback-upload-placeholder {
-  position:absolute; inset:0;
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  gap:0.8rem; cursor:pointer;
-  transition:background 0.3s;
-}
-.feedback-upload-placeholder:hover { background:rgba(201,168,76,0.08); }
-.upload-icon {
-  width:56px; height:56px; border-radius:50%;
-  border:2px dashed var(--gold);
-  display:flex; align-items:center; justify-content:center;
-  font-size:1.4rem; color:var(--gold);
-  transition:all 0.3s;
-}
-.feedback-upload-placeholder:hover .upload-icon { background:var(--gold); color:var(--white); border-style:solid; }
-.upload-text {
-  font-family:'Cinzel', serif; font-size:0.7rem;
-  letter-spacing:0.2em; color:var(--text-light);
-  text-align:center; text-transform:uppercase;
-  line-height:1.6;
-}
-.feedback-file-input { display:none; }
-.feedback-footer {
-  padding:1.2rem 1.4rem 1.5rem;
-  border-top:1px solid var(--glass-border);
-  background:var(--white);
-  display:flex; align-items:center; justify-content:space-between;
-}
-.feedback-num {
-  font-family:'Cinzel', serif; font-size:0.68rem;
-  letter-spacing:0.2em; color:var(--gold); text-transform:uppercase;
-}
-.feedback-stars { color:var(--gold-shine); font-size:0.8rem; letter-spacing:0.05em; }
-.feedback-corner-deco {
-  position:absolute; bottom:1rem; right:1rem;
-  width:24px; height:24px;
-  border-right:1px solid rgba(201,168,76,0.3);
-  border-bottom:1px solid rgba(201,168,76,0.3);
-  pointer-events:none;
-}
-/* remove-photo btn */
-.remove-photo {
-  position:absolute; top:8px; right:8px; z-index:5;
-  width:28px; height:28px; border-radius:50%;
-  background:rgba(255,255,255,0.9); border:1px solid var(--gold);
-  color:var(--gold-deep); font-size:0.9rem; cursor:pointer;
-  display:none; align-items:center; justify-content:center;
-  font-family:sans-serif; line-height:1;
-  transition:all 0.25s;
-}
-.remove-photo:hover { background:var(--gold); color:var(--white); }
-.feedback-photo-wrap:hover .remove-photo { display:flex; }
-/* ── MORE ABOUT ── */
-#more-about {
-  padding:110px 5%;
-  background:var(--cream2);
-}
-.more-grid {
-  display:grid; grid-template-columns:1.15fr 1fr;
-  gap:5rem; align-items:center; max-width:1200px; margin:0 auto;
-}
-.more-img-wrap {
-  position:relative;
-  border:1px solid var(--glass-border);
-  overflow:hidden;
-  box-shadow:0 20px 60px var(--shadow-gold);
-}
-.more-img-wrap img { width:100%; display:block; transition:transform 0.9s; }
-.more-img-wrap:hover img { transform:scale(1.04); }
-.more-img-wrap::after {
-  content:''; position:absolute; inset:0;
-  background:linear-gradient(to right,transparent,rgba(250,243,227,0.15));
-  pointer-events:none;
-}
-.more-text p { color:var(--text-mid); line-height:1.95; font-size:1.02rem; margin-bottom:1.1rem; }
-.feature-list { list-style:none; margin:1.8rem 0; }
-.feature-list li {
-  display:flex; align-items:center; gap:0.9rem;
-  padding:0.7rem 0; border-bottom:1px solid rgba(201,168,76,0.12);
-  color:var(--text-mid); font-size:0.95rem;
-}
-.feature-list li::before { content:'◆'; color:var(--gold); font-size:0.45rem; flex-shrink:0; }
-.more-title-big {
-  font-family:'Cinzel', serif;
-  font-size:clamp(1.7rem,3.5vw,2.8rem);
-  color:var(--text-dark); line-height:1.2; margin-bottom:1rem;
-}
-.more-title-big span {
-  background:linear-gradient(135deg,var(--gold-deep),var(--gold-shine));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-}
+    .lang-btn:hover{
+      transform:scale(1.07);
+    }
 
-/* ── LOCATION ── */
-#location {
-  padding:100px 5%;
-  background:var(--white);
-  text-align:center;
-}
-.location-inner { max-width:680px; margin:0 auto; }
-.location-card {
-  background:var(--cream);
-  border:1px solid var(--glass-border);
-  padding:3.5rem 3rem;
-  margin-top:3rem; position:relative;
-  box-shadow:0 12px 40px var(--shadow-gold);
-}
-.location-card::before {
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(ellipse at center,rgba(201,168,76,0.04),transparent);
-  pointer-events:none;
-}
-.location-icon { font-size:2.6rem; margin-bottom:1.1rem; display:block; }
-.location-address {
-  font-family:'Cinzel', serif; font-size:1.3rem;
-  color:var(--text-dark); margin-bottom:0.4rem;
-  letter-spacing:0.04em;
-}
-.location-sub { color:var(--text-light); font-size:0.82rem; letter-spacing:0.22em; margin-bottom:1.8rem; }
-.contact-line {
-  display:flex; align-items:center; justify-content:center; gap:0.75rem;
-  color:var(--gold-deep); font-family:'Cinzel', serif;
-  font-size:1.1rem; letter-spacing:0.15em; margin:1.3rem 0;
-}
-.contact-line a { color:var(--gold-deep); text-decoration:none; transition:color 0.3s; }
-.contact-line a:hover { color:var(--gold-shine); }
+    /* HERO */
+    .hero{
+      height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
+      url('https://i.imgur.com/yWlQQ9K.jpeg');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:white;
+      position:relative;
+    }
 
-/* ── FOOTER ── */
-footer {
-  background:var(--cream2);
-  border-top:1px solid var(--glass-border);
-  padding:50px 5% 28px;
-  text-align:center;
-}
-.footer-logo {
-  font-family:'Cinzel', serif; font-size:1.7rem; letter-spacing:0.3em;
-  background:linear-gradient(135deg,var(--gold-deep),var(--gold-shine),var(--gold));
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  margin-bottom:0.4rem;
-}
-.footer-tag { color:var(--text-light); font-size:0.68rem; letter-spacing:0.48em; text-transform:uppercase; }
-.footer-divider { width:90px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:1.8rem auto; }
-.footer-links { display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; margin-bottom:1.8rem; }
-.footer-links a { color:var(--text-light); font-size:0.72rem; letter-spacing:0.18em; text-decoration:none; text-transform:uppercase; transition:color 0.3s; }
-.footer-links a:hover { color:var(--gold-deep); }
-.footer-copy { color:rgba(92,74,30,0.4); font-size:0.7rem; letter-spacing:0.15em; }
+    .hero-content{
+      max-width:850px;
+      animation:fadeUp 1.5s ease;
+    }
 
-/* FLOATING WA */
-.wa-float {
-  position:fixed; bottom:28px; right:28px; z-index:900;
-  width:56px; height:56px; border-radius:50%;
-  background:linear-gradient(135deg,#128C7E,#25D366);
-display:flex; align-items:center; justify-content:center;
-  box-shadow:0 6px 24px rgba(37,211,102,0.45);
-  text-decoration:none; font-size:1.5rem;
-  animation:waPulse 2.5s ease-in-out infinite;
-}
-.wa-float:hover { transform:scale(1.1); }
-@keyframes waPulse {
-  0%,100%{box-shadow:0 6px 24px rgba(37,211,102,0.45)}
-  50%{box-shadow:0 6px 38px rgba(37,211,102,0.75),0 0 0 8px rgba(37,211,102,0.09)}
-}
+    .hero h1{
+      font-size:75px;
+      font-weight:700;
+      margin-bottom:20px;
+      text-shadow:0 5px 15px rgba(0,0,0,0.5);
+    }
 
-/* LOADER */
-#loader {
-  position:fixed; inset:0; z-index:99999;
-  background:var(--white);
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
-  transition:opacity 0.8s 0.3s, visibility 0.8s 0.3s;
-}
-#loader.hidden { opacity:0; visibility:hidden; }
-.loader-ornament {
-  width:80px; height:80px; border-radius:50%;
-  border:1px solid var(--gold-pale);
-  display:flex; align-items:center; justify-content:center;
-  margin-bottom:1.5rem; animation:spinSlow 3s linear infinite;
-  position:relative;
-}
-.loader-ornament::before {
-  content:''; position:absolute; inset:6px; border-radius:50%;
-  border:1px solid var(--glass-border);
-}
-@keyframes spinSlow { to{transform:rotate(360deg)} }
-.loader-logo {
-  font-family:'Cinzel', serif; font-size:1.9rem; letter-spacing:0.4em;
-  background:linear-gradient(90deg,var(--gold-deep),var(--gold-shine),var(--gold-deep));
-  background-size:200% auto;
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  animation:shimmer 2s linear infinite;
-}
-@keyframes shimmer { from{background-position:-200% center} to{background-position:200% center} }
-.loader-bar-wrap {
-  width:160px; height:1px;
-  background:rgba(201,168,76,0.18); margin-top:2rem; overflow:hidden;
-}
-.loader-bar { height:100%; background:var(--gold-shine); animation:loadBar 2s ease forwards; }
-@keyframes loadBar { from{width:0} to{width:100%} }
+    .hero p{
+      font-size:22px;
+      line-height:1.8;
+      margin-bottom:30px;
+    }
 
-/* MOBILE */
-@media(max-width:900px) {
-  .about-grid,.more-grid { grid-template-columns:1fr; gap:3rem; }
-  .nav-links { display:none; }
-  .ba-grid { grid-template-columns:1fr; }
-}
-/* RTL */
-[dir="rtl"] .nav-links { flex-direction:row-reverse; }
-[dir="rtl"] .stat-row { flex-direction:row-reverse; }
-[dir="rtl"] .feature-list li { flex-direction:row-reverse; }
-[dir="rtl"] .footer-links { flex-direction:row-reverse; }
-[dir="rtl"] .divider:not(.center) { margin-left:0; }
-</style>
+    .hero-btn{
+      display:inline-block;
+      padding:16px 38px;
+      background:linear-gradient(45deg,var(--gold),#fff);
+      color:#111;
+      border-radius:40px;
+      text-decoration:none;
+      font-weight:700;
+      transition:0.4s;
+    }
+
+    .hero-btn:hover{
+      transform:translateY(-5px) scale(1.05);
+      box-shadow:0 10px 30px rgba(212,175,55,0.5);
+    }
+
+    /* FLOATING BOXES */
+    .floating-box{
+      position:absolute;
+      width:130px;
+      height:130px;
+      border:2px solid rgba(255,255,255,0.25);
+      animation:float 4s infinite ease-in-out;
+      backdrop-filter:blur(4px);
+    }
+
+    .box1{
+      top:15%;
+      left:8%;
+    }
+
+    .box2{
+      bottom:20%;
+      right:10%;
+    }
+
+    /* TITLES */
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:45px;
+      color:var(--gold);
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      color:#666;
+      font-size:18px;
+    }
+
+    /* SERVICES */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    .service-card{
+      background:white;
+      padding:35px;
+      border-radius:25px;
+      transition:0.5s;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .service-card::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,215,0,0.25),transparent);
+      transition:0.8s;
+    }
+
+    .service-card:hover::before{
+      left:100%;
+    }
+
+    .service-card:hover{
+      transform:translateY(-12px);
+    }
+
+    .service-card h3{
+      color:var(--gold);
+      margin-bottom:15px;
+      font-size:24px;
+    }
+
+    .service-card p{
+      color:#666;
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+
+    .book-btn{
+      display:inline-block;
+      padding:12px 25px;
+      border-radius:40px;
+      background:linear-gradient(45deg,var(--gold),#fff);
+      color:#111;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.4s;
+    }
+
+    .book-btn:hover{
+      transform:scale(1.08);
+    }
+
+    /* ABOUT */
+    .about{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:30px;
+      box-shadow:0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .about-text h2{
+      font-size:48px;
+      color:var(--gold);
+      margin-bottom:25px;
+    }
+
+    .about-text p{
+      line-height:2;
+      color:#555;
+      font-size:18px;
+    }
+
+    /* BEFORE AFTER */
+    .before-after-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:35px;
+    }
+
+    .ba-card{
+      border-radius:25px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      transition:0.4s;
+    }
+
+    .ba-card:hover{
+      transform:scale(1.03);
+    }
+
+    .ba-card img{
+      width:100%;
+      height:380px;
+      object-fit:cover;
+    }
+
+    .ba-card h3{
+      padding:20px;
+      text-align:center;
+      color:var(--gold);
+    }
+
+    /* FEEDBACK */
+    .feedbacks{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .feedback-card{
+      padding:35px;
+      border-radius:25px;
+      background:#fff;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      transition:0.4s;
+    }
+
+    .feedback-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .stars{
+      color:gold;
+      margin-bottom:15px;
+      font-size:22px;
+    }
+
+    /* FOOTER */
+    footer{
+      background:#111;
+      color:white;
+      padding:70px 8%;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    footer h2{
+      color:var(--gold);
+      margin-bottom:20px;
+      font-size:38px;
+    }
+
+    footer p{
+      font-size:18px;
+      margin:10px 0;
+      color:#ddd;
+    }
+
+    .footer-box{
+      position:absolute;
+      width:120px;
+      height:120px;
+      border:2px solid rgba(255,255,255,0.12);
+      top:20px;
+      right:40px;
+      animation:float 4s infinite;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+
+      .hero h1{
+        font-size:50px;
+      }
+
+      .about{
+        grid-template-columns:1fr;
+      }
+
+      nav{
+        padding:15px 5%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-ornament">✦</div>
-  <div class="loader-logo">LUXE BEAUTY</div>
-  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
-</div>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">LUXE BEAUTY</div>
 
-<!-- CURSOR -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+    <button class="lang-btn" onclick="toggleLanguage()">
+      العربية / English
+    </button>
+  </nav>
 
-<!-- PARTICLES -->
-<canvas id="particles"></canvas>
+  <!-- HERO -->
+  <section class="hero">
 
-<!-- ── NAV ── -->
-<nav id="navbar">
-  <a href="#" class="logo">LUXE BEAUTY <span>BY MARO</span></a>
-  <ul class="nav-links">
-    <li><a href="#about" class="en-text" data-ar="عن المركز">About</a></li>
-    <li><a href="#services" class="en-text" data-ar="خدماتنا">Services</a></li>
-    <li><a href="#results" class="en-text" data-ar="النتائج">Results</a></li>
-    <li><a href="#testimonials" class="en-text" data-ar="آراء العملاء">Reviews</a></li>
-    <li><a href="#location" class="en-text" data-ar="الموقع">Location</a></li>
-  </ul>
-  <button class="lang-btn" onclick="toggleLang()"><span id="langTxt">عربي</span></button>
-</nav>
+    <div class="floating-box box1"></div>
+    <div class="floating-box box2"></div>
 
-<!-- ── HERO ── -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-overlay2"></div>
-  <div class="hero-content">
-    <div class="hero-badge"><span class="en-text" data-ar="مركز العناية بالبشرة المتميز">Premium Skincare Clinic</span></div>
-    <h1 class="hero-title">LUXE<br>BEAUTY</h1>
-    <p class="hero-sub en-text" data-ar="بقلم مارو">by Maro</p>
-    <div class="hero-line"></div>
-    <p class="hero-tagline en-text" data-ar="حيث تلتقي الفخامة بالجمال الحقيقي">Where Luxury Meets Timeless Beauty</p>
-    <div class="hero-cta">
-      <a href="#services" class="btn-gold en-text" data-ar="اكتشفي خدماتنا">Explore Services</a>
-      <a href="#location" class="btn-outline en-text" data-ar="احجزي موعدك">Book Appointment</a>
-    </div>
-  </div>
-</section>
-<!-- MARQUEE -->
-<div class="marquee-strip">
-  <div class="marquee-inner">
-    <span class="en-text" data-ar="عناية بالبشرة">Skincare</span><span>✦</span>
-    <span class="en-text" data-ar="فاخر">Luxury</span><span>✦</span>
-    <span class="en-text" data-ar="تجديد الشباب">Rejuvenation</span><span>✦</span>
-    <span class="en-text" data-ar="جمال خالد">Timeless Beauty</span><span>✦</span>
-    <span class="en-text" data-ar="بشرة متوهجة">Glowing Skin</span><span>✦</span>
-    <span class="en-text" data-ar="علاجات متقدمة">Advanced Treatments</span><span>✦</span>
-    <span class="en-text" data-ar="عناية بالبشرة">Skincare</span><span>✦</span>
-    <span class="en-text" data-ar="فاخر">Luxury</span><span>✦</span>
-    <span class="en-text" data-ar="تجديد الشباب">Rejuvenation</span><span>✦</span>
-    <span class="en-text" data-ar="جمال خالد">Timeless Beauty</span><span>✦</span>
-    <span class="en-text" data-ar="بشرة متوهجة">Glowing Skin</span><span>✦</span>
-    <span class="en-text" data-ar="علاجات متقدمة">Advanced Treatments</span><span>✦</span>
-  </div>
-</div>
+    <div class="hero-content">
+      <h1 class="translate" data-en="LUXE BEAUTY BY MARO" data-ar="لوكس بيوتي باي مارو">
+        LUXE BEAUTY BY MARO
+      </h1>
 
-<!-- ── ABOUT ── -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-image-wrap reveal-left">
-      <div class="about-frame">
-        <img src="https://i.imgur.com/yWlQQ9K.jpeg" alt="Luxe Beauty by Maro">
-        <div class="corner tl"></div><div class="corner tr"></div>
-        <div class="corner bl"></div><div class="corner br"></div>
-      </div>
-      <div class="about-badge">
-        <div class="about-badge-inner">
-          <strong>5★</strong>
-          <small class="en-text" data-ar="خبرة">EXPERT</small>
-        </div>
-      </div>
-    </div>
-    <div class="about-text reveal-right">
-      <span class="section-label en-text" data-ar="قصتنا">Our Story</span>
-      <h2 class="section-title en-text" data-ar="فن العناية<br>بالبشرة">The Art of<br>Skin <span>Care</span></h2>
-      <div class="divider"></div>
-      <p class="en-text" data-ar="في لوكس بيوتي باي مارو، نحن لسنا مجرد مركز للعناية بالبشرة — نحن تجربة لا تُنسى. كل علاج مصمم خصيصًا لبشرتك، مع استخدام أحدث التقنيات وأرقى المنتجات العالمية.">At Luxe Beauty by Maro, we are more than a skincare clinic — we are an unforgettable experience. Every treatment is tailored precisely to your unique skin, combining advanced techniques with premium world-class care.</p>
-      <p class="en-text" data-ar="نؤمن بأن كل امرأة تستحق بشرة متألقة وثقة لا حدود لها. هذا هو وعدنا لكِ.">We believe every woman deserves radiant skin and boundless confidence. That is our promise to you.</p>
-      <div class="stat-row">
-        <div class="stat-item"><span class="stat-num">500+</span><span class="stat-lbl en-text" data-ar="عميلة سعيدة">Happy Clients</span></div>
-        <div class="stat-item"><span class="stat-num">8+</span><span class="stat-lbl en-text" data-ar="سنوات خبرة">Years Exp.</span></div>
-        <div class="stat-item"><span class="stat-num">20+</span><span class="stat-lbl en-text" data-ar="علاج متخصص">Treatments</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+      <p class="translate"
+      data-en="Luxury skincare services with elegance, confidence, beauty and professional care."
+      data-ar="خدمات عناية بالبشرة فاخرة تجمع بين الجمال والأناقة والعناية الاحترافية.">
+      Luxury skincare services with elegance, confidence, beauty and professional care.
+      </p>
 
-<!-- ── SERVICES ── -->
-<section id="services">
-  <div class="services-header reveal">
-    <span class="section-label en-text" data-ar="ما نقدمه">What We Offer</span>
-    <h2 class="section-title en-text" data-ar="علاجاتنا <span>المتميزة</span>">Our Signature <span>Treatments</span></h2>
-    <div class="divider center"></div>
-    <p class="section-desc en-text" data-ar="كل علاج هو تحفة فنية مصمم لإبراز جمالك الطبيعي." style="margin:0 auto;">Every treatment is a masterpiece in skincare, designed to unveil your natural radiance.</p>
-  </div>
-  <div class="services-grid" id="servicesGrid"></div>
-</section>
-
-<!-- ── BEFORE / AFTER ── -->
-<section id="results">
-  <div class="results-header reveal">
-    <span class="section-label en-text" data-ar="نتائجنا">Transformations</span>
-<h2 class="section-title en-text" data-ar="قبل <span>وبعد</span>">Before <span>&amp; After</span></h2>
-    <div class="divider center"></div>
-    <p class="section-desc en-text" style="margin:0 auto;" data-ar="اسحبي للمقارنة — تحولات حقيقية لعميلاتنا.">Drag to compare — real results from real clients.</p>
-  </div>
-  <div class="ba-grid" id="baGrid"></div>
-</section>
-
-<!-- ── TESTIMONIALS / FEEDBACK PHOTOS ── -->
-<section id="testimonials">
-  <div class="test-header reveal">
-    <span class="section-label en-text" data-ar="آراء عميلاتنا">Client Feedback</span>
-    <h2 class="section-title en-text" data-ar="صور <span>التقييمات</span>">Feedback <span>Gallery</span></h2>
-    <div class="divider center"></div>
-    <p class="section-desc en-text" style="margin:0 auto;" data-ar="انقري على أي إطار لإضافة صورة تقييم من عميلاتنا الرائعات.">Click any frame to upload a client feedback photo — showcase real results.</p>
-  </div>
-  <div class="test-grid" id="feedbackGrid"></div>
-</section>
-
-<!-- ── MORE ABOUT ── -->
-<section id="more-about">
-  <div class="more-grid">
-    <div class="more-img-wrap reveal-left">
-      <img src="https://i.imgur.com/xtRNgag.jpeg" alt="More About Luxe Beauty by Maro">
-      <div class="corner tl"></div><div class="corner br"></div>
-    </div>
-    <div class="more-text reveal-right">
-      <span class="section-label en-text" data-ar="اكتشفي أكثر">Discover More</span>
-      <h2 class="more-title-big en-text" data-ar="المزيد عن<br><span>لوكس بيوتي</span>">More About<br><span>Luxe Beauty</span></h2>
-      <div class="divider"></div>
-      <p class="en-text" data-ar="مركزنا هو وجهة للنساء اللواتي يبحثن عن التميز في العناية بالبشرة. نجمع بين العلم الحديث والأسرار الجمالية التقليدية لنقدم لكِ تجربة لا مثيل لها.">Our clinic is a destination for women seeking excellence in skincare. We blend cutting-edge science with timeless beauty wisdom to deliver an unmatched experience.</p>
-      <p class="en-text" data-ar="كل زيارة هي رحلة نحو بشرة أكثر إشراقًا وصحة. نستخدم أحدث الأجهزة والمنتجات العالمية لضمان أفضل النتائج.">Every visit is a journey toward healthier, more luminous skin. We use state-of-the-art equipment and world-class products to guarantee optimal results.</p>
-      <ul class="feature-list">
-        <li><span class="en-text" data-ar="استشارة شخصية مجانية">Complimentary Personal Consultation</span></li>
-        <li><span class="en-text" data-ar="معدات متقدمة وتقنيات حديثة">Advanced Equipment & Modern Techniques</span></li>
-        <li><span class="en-text" data-ar="متخصصة معتمدة في العناية بالبشرة">Certified Skincare Specialist</span></li>
-        <li><span class="en-text" data-ar="بيئة فاخرة ومريحة">Luxurious & Relaxing Environment</span></li>
-        <li><span class="en-text" data-ar="نتائج مضمونة وموثقة">Guaranteed & Documented Results</span></li>
-      </ul>
-      <a href="https://wa.me/96171589542?text=Hello%2C+I'd+like+to+book+a+consultation+at+Luxe+Beauty+by+Maro"
-         class="btn-gold en-text" data-ar="احجزي استشارتك" target="_blank" style="text-decoration:none;margin-top:0.5rem;display:inline-block;">Book a Consultation</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── LOCATION ── -->
-<section id="location">
-  <div class="location-inner reveal">
-    <span class="section-label en-text" data-ar="زورينا">Find Us</span>
-    <h2 class="section-title en-text" data-ar="<span>موقعنا</span>">Our <span>Location</span></h2>
-    <div class="divider center"></div>
-    <div class="location-card">
-      <span class="location-icon">📍</span>
-      <p class="location-address">شياح، شارع عبد الكريم خليل</p>
-      <p class="location-sub en-text" data-ar="شياح، لبنان">Chiyah, Lebanon</p>
-      <p class="section-desc en-text" style="margin:0 auto 1.5rem;text-align:center;" data-ar="نحن هنا لنرحب بكِ. تواصلي معنا لحجز موعدك.">We are here to welcome you with warmth. Reach out to book your appointment.</p>
-<div class="contact-line">
-        <span>📞</span>
-        <a href="tel:+96171589542">+961 71 589 542</a>
-      </div>
-      <div style="margin-top:1.8rem;">
-        <a href="https://wa.me/96171589542?text=مرحبا،+أريد+حجز+موعد+في+Luxe+Beauty+by+Maro"
-           class="btn-gold en-text" data-ar="تواصلي عبر واتساب" target="_blank" style="text-decoration:none;">WhatsApp Us</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-logo">LUXE BEAUTY</div>
-  <div class="footer-tag en-text" data-ar="بقلم مارو — شياح، لبنان">by Maro — Chiyah, Lebanon</div>
-  <div class="footer-divider"></div>
-  <div class="footer-links">
-    <a href="#about" class="en-text" data-ar="عن المركز">About</a>
-    <a href="#services" class="en-text" data-ar="الخدمات">Services</a>
-    <a href="#results" class="en-text" data-ar="النتائج">Results</a>
-    <a href="#testimonials" class="en-text" data-ar="التقييمات">Reviews</a>
-    <a href="#location" class="en-text" data-ar="الموقع">Location</a>
-  </div>
-  <p class="footer-copy en-text" data-ar="© 2025 لوكس بيوتي باي مارو — جميع الحقوق محفوظة">© 2025 Luxe Beauty by Maro — All Rights Reserved</p>
-</footer>
-
-<!-- FLOATING WA -->
-<a href="https://wa.me/96171589542" class="wa-float" target="_blank">💬</a>
-
-<script>
-const PHONE = '96171589542';
-let isArabic = false;
-
-/* ─── SERVICES DATA ─── */
-const services = [
-  { icon:'✨', nameEn:'HydraFacial', nameAr:'هيدرا فيشل', descEn:'Deep hydration and resurfacing treatment that cleanses, exfoliates, and nourishes for an instant glow.', descAr:'علاج ترطيب عميق يعمل على التنظيف والتقشير والتغذية لتوهج فوري.', wa:'I+would+like+to+book+the+HydraFacial+service', waAr:'أريد+حجز+خدمة+هيدرا+فيشل' },
-  { icon:'💎', nameEn:'Diamond Microdermabrasion', nameAr:'تقشير ماسي', descEn:'Premium exfoliation removing dead cells and stimulating collagen production for smoother, younger-looking skin.', descAr:'تقشير متقدم يزيل الخلايا الميتة ويحفز الكولاجين لبشرة أكثر نعومة وشبابًا.', wa:'I+would+like+to+book+the+Diamond+Microdermabrasion+service', waAr:'أريد+حجز+خدمة+التقشير+الماسي' },
-  { icon:'🌿', nameEn:'Organic Brightening Facial', nameAr:'علاج التفتيح العضوي', descEn:'Luxurious botanical actives targeting hyperpigmentation and uneven tone for a luminous complexion.', descAr:'مستخلصات نباتية فاخرة تستهدف البقع الداكنة وعدم انتظام لون البشرة.', wa:'I+would+like+to+book+the+Organic+Brightening+Facial', waAr:'أريد+حجز+خدمة+التفتيح+العضوي' },
-  { icon:'⚡', nameEn:'RF Skin Tightening', nameAr:'شد البشرة بالترددات الراديوية', descEn:'Non-invasive radiofrequency treatment that firms skin by stimulating deep collagen regeneration.', descAr:'علاج غير جراحي يشد البشرة ويحفز تجديد الكولاجين العميق.', wa:'I+would+like+to+book+the+RF+Skin+Tightening+service', waAr:'أريد+حجز+خدمة+شد+البشرة' },
-  { icon:'🌙', nameEn:'Anti-Aging Serum Treatment', nameAr:'علاج سيروم مكافحة الشيخوخة', descEn:'Intensive infusion of powerful anti-aging serums to reduce fine lines and restore youthful radiance.', descAr:'جلسة مكثفة بأمصال مكافحة الشيخوخة تقلل الخطوط وتعيد توهج الشباب.', wa:'I+would+like+to+book+the+Anti-Aging+Serum+Treatment', waAr:'أريد+حجز+علاج+سيروم+مكافحة+الشيخوخة' },
-  { icon:'🌸', nameEn:'Sensitive Skin Calming', nameAr:'علاج تهدئة البشرة الحساسة', descEn:'Gentle therapy designed for reactive and sensitive skin, reducing redness and restoring natural balance.', descAr:'علاج لطيف للبشرة الحساسة يقلل الاحمرار ويعيد التوازن الطبيعي.', wa:'I+would+like+to+book+the+Sensitive+Skin+Calming+Treatment', waAr:'أريد+حجز+علاج+تهدئة+البشرة+الحساسة' },
-];
-
-/* ─── BEFORE/AFTER DATA ─── */
-const baData = [
-  { titleEn:'Brightening Treatment', titleAr:'علاج التفتيح', beforeEn:'Before', beforeAr:'قبل', afterEn:'After', afterAr:'بعد' },
-  { titleEn:'Anti-Aging Therapy', titleAr:'علاج مكافحة الشيخوخة', beforeEn:'Before', beforeAr:'قبل', afterEn:'After', afterAr:'بعد' },
-  { titleEn:'Deep Hydration', titleAr:'ترطيب عميق', beforeEn:'Before', beforeAr:'قبل', afterEn:'After', afterAr:'بعد' },
-];
-WhatsApp.com
-Share on WhatsApp
-
-WhatsApp Messenger: More than 2 billion people
-          in over 180 countries use WhatsApp to stay in touch with friends and
-          family, anytime and anywhere. What...
-
-/* ─── FEEDBACK LABELS ─── */
-const feedbackLabels = [
-  { en:'Feedback 01', ar:'تقييم ١', subEn:'Client Result', subAr:'نتيجة العميلة' },
-  { en:'Feedback 02', ar:'تقييم ٢', subEn:'Client Result', subAr:'نتيجة العميلة' },
-  { en:'Feedback 03', ar:'تقييم ٣', subEn:'Client Result', subAr:'نتيجة العميلة' },
-  { en:'Feedback 04', ar:'تقييم ٤', subEn:'Client Result', subAr:'نتيجة العميلة' },
-  { en:'Feedback 05', ar:'تقييم ٥', subEn:'Client Result', subAr:'نتيجة العميلة' },
-  { en:'Feedback 06', ar:'تقييم ٦', subEn:'Client Result', subAr:'نتيجة العميلة' },
-];
-
-/* ─── BUILD SERVICES ─── */
-function buildServices() {
-  const g = document.getElementById('servicesGrid');
-  g.innerHTML = services.map((s,i) => 
-    <div class="service-card reveal" style="transition-delay:${(i%3)*0.1+0.08}s">
-      <span class="service-icon">${s.icon}</span>
-      <h3 class="service-name en-text" data-ar="${s.nameAr}">${s.nameEn}</h3>
-      <div class="service-line"></div>
-      <p class="service-desc en-text" data-ar="${s.descAr}">${s.descEn}</p>
-      <a href="${bookLink(s)}" target="_blank" class="book-btn" data-svc="${i}">
-        <span class="wa-ico">💬</span>
-        <span class="en-text" data-ar="احجزي الخدمة">Book Service</span>
+      <a href="#services" class="hero-btn translate"
+      data-en="Explore Services"
+      data-ar="استكشاف الخدمات">
+      Explore Services
       </a>
-    </div>).join('');
-}
+    </div>
 
-function bookLink(s) {
-  return https://wa.me/${PHONE}?text=${isArabic ? s.waAr : s.wa};
-}
+  </section>
 
-/* ─── BUILD BEFORE/AFTER ─── */
-function buildBA() {
-  const g = document.getElementById('baGrid');
-  g.innerHTML = baData.map((b,i) => 
-    <div class="ba-card reveal" style="transition-delay:${i*0.13}s">
-      <div class="ba-slider" id="bs${i}">
-        <div class="ba-before">${isArabic?b.beforeAr:b.beforeEn}</div>
-        <div class="ba-after" id="ba${i}">${isArabic?b.afterAr:b.afterEn}</div>
-        <div class="ba-handle" id="bh${i}"></div>
+  <!-- SERVICES -->
+  <section id="services">
+
+    <div class="section-title">
+      <h2 class="translate" data-en="Our Services" data-ar="خدماتنا">
+        Our Services
+      </h2>
+
+      <p class="translate"
+      data-en="Professional skincare treatments designed for beauty and confidence."
+      data-ar="علاجات احترافية للعناية بالبشرة تمنحك الجمال والثقة.">
+      Professional skincare treatments designed for beauty and confidence.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <h3>Hydra Facial</h3>
+        <p>Deep cleansing and hydration for glowing healthy skin.</p>
+
+        <a class="book-btn"
+        href="https://wa.me/96171589542?text=Hello%20I%20want%20to%20book%20Hydra%20Facial"
+        target="_blank">
+        Book Service
+        </a>
       </div>
-      <div class="ba-labels">
-        <span class="ba-label before en-text" data-ar="${b.beforeAr}">${b.beforeEn}</span>
-        <span class="ba-label after en-text" data-ar="${b.afterAr}">${b.afterEn}</span>
+
+      <div class="service-card">
+        <h3>Acne Treatment</h3>
+        <p>Professional skincare treatment for acne and skin recovery.</p>
+
+        <a class="book-btn"
+        href="https://wa.me/96171589542?text=Hello%20I%20want%20to%20book%20Acne%20Treatment"
+        target="_blank">
+        Book Service
+        </a>
       </div>
-      <div class="ba-title en-text" data-ar="${b.titleAr}">${b.titleEn}</div>
-    </div>).join('');
-  initBA();
-}
 
-function initBA() {
-  baData.forEach((_,i) => {
-    const sl=document.getElementById(bs${i}),af=document.getElementById(ba${i}),hd=document.getElementById(bh${i});
-    if(!sl) return;
-    let drag=false;
-    const set=x=>{const r=sl.getBoundingClientRect();const p=Math.max(0,Math.min(100,(x-r.left)/r.width*100));af.style.clipPath=inset(0 ${100-p}% 0 0);hd.style.left=p+'%';};
-    sl.addEventListener('mousedown',e=>{drag=true;set(e.clientX);});
-    window.addEventListener('mousemove',e=>{if(drag)set(e.clientX);});
-    window.addEventListener('mouseup',()=>drag=false);
-    sl.addEventListener('touchstart',e=>{drag=true;set(e.touches[0].clientX);},{passive:true});
-    window.addEventListener('touchmove',e=>{if(drag)set(e.touches[0].clientX);},{passive:true});
-    window.addEventListener('touchend',()=>drag=false);
-    sl.addEventListener('mouseenter',()=>{let dir=1,pos=50;const t=setInterval(()=>{if(!sl.matches(':hover')){clearInterval(t);return;}pos+=dir*0.7;if(pos>68||pos<32)dir*=-1;af.style.clipPath=inset(0 ${100-pos}% 0 0);hd.style.left=pos+'%';},16);});
-  });
-}
+      <div class="service-card">
+        <h3>Skin Glow Session</h3>
+        <p>Restore freshness and natural radiance to your skin.</p>
 
-/* ─── BUILD FEEDBACK GRID (6 photo slots) ─── */
-function buildFeedback() {
-  const g = document.getElementById('feedbackGrid');
-  g.innerHTML = feedbackLabels.map((lbl,i) => `
-    <div class="feedback-card reveal" style="transition-delay:${(i%3)*0.12+0.05}s" id="fcard${i}">
-      <div class="feedback-photo-wrap" id="fwrap${i}" onclick="triggerUpload(${i})">
-        <div class="feedback-upload-placeholder" id="fplaceholder${i}">
-          <div class="upload-icon">📷</div>
-          <div class="upload-text en-text" data-ar="انقري لإضافة\nصورة تقييم" id="fuplabel${i}">Click to add<br>feedback photo</div>
-</div>
-        <img id="fimg${i}" src="" alt="" style="display:none;">
-        <button class="remove-photo" id="fremove${i}" onclick="removePhoto(event,${i})" title="Remove">✕</button>
+        <a class="book-btn"
+        href="https://wa.me/96171589542?text=Hello%20I%20want%20to%20book%20Skin%20Glow%20Session"
+        target="_blank">
+        Book Service
+        </a>
       </div>
-      <input type="file" accept="image/*" class="feedback-file-input" id="finput${i}" onchange="loadPhoto(event,${i})">
-      <div class="feedback-footer">
-        <span class="feedback-num en-text" data-ar="${lbl.ar}">${lbl.en}</span>
-        <span class="feedback-stars">★★★★★</span>
+
+      <div class="service-card">
+        <h3>Anti Aging Care</h3>
+        <p>Luxury care to improve skin texture and smoothness.</p>
+
+        <a class="book-btn"
+        href="https://wa.me/96171589542?text=Hello%20I%20want%20to%20book%20Anti%20Aging%20Care"
+        target="_blank">
+        Book Service
+        </a>
       </div>
-      <div class="feedback-corner-deco"></div>
-    </div>).join('');
-}
 
-function triggerUpload(i) {
-  document.getElementById(finput${i}).click();
-}
+    </div>
 
-function loadPhoto(e, i) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    const img = document.getElementById(fimg${i});
-    const placeholder = document.getElementById(fplaceholder${i});
-    img.src = ev.target.result;
-    img.style.display = 'block';
-    placeholder.style.display = 'none';
-    document.getElementById(fwrap${i}).style.cursor = 'default';
-  };
-  reader.readAsDataURL(file);
-}
+  </section>
 
-function removePhoto(e, i) {
-  e.stopPropagation();
-  const img = document.getElementById(fimg${i});
-  const placeholder = document.getElementById(fplaceholder${i});
-  img.src = ''; img.style.display = 'none';
-  placeholder.style.display = 'flex';
-  document.getElementById(finput${i}).value = '';
-  document.getElementById(fwrap${i}`).style.cursor = 'pointer';
-}
+  <!-- ABOUT -->
+  <section>
 
-/* ─── LANGUAGE TOGGLE ─── */
-function toggleLang() {
-  isArabic = !isArabic;
-  const html = document.documentElement;
-  html.lang = isArabic ? 'ar' : 'en';
-  html.dir = isArabic ? 'rtl' : 'ltr';
-  document.getElementById('langTxt').textContent = isArabic ? 'English' : 'عربي';
-  document.body.style.fontFamily = isArabic ? "'Cairo', sans-serif" : "'Cormorant Garamond', serif";
+    <div class="about">
 
-  document.querySelectorAll('.en-text[data-ar]').forEach(el => {
-    if (!el.getAttribute('data-en')) el.setAttribute('data-en', el.innerHTML);
-    el.innerHTML = isArabic ? el.getAttribute('data-ar') : el.getAttribute('data-en');
-  });
+      <img src="https://i.imgur.com/xtRNgag.jpeg" alt="about">
 
-  // Update book links
-  document.querySelectorAll('.book-btn[data-svc]').forEach(btn => {
-    const idx = parseInt(btn.getAttribute('data-svc'));
-    if (services[idx]) btn.href = bookLink(services[idx]);
-  });
-}
+      <div class="about-text">
+        <h2 class="translate"
+        data-en="MORE ABOUT LUXE BEAUTY"
+        data-ar="المزيد عن لوكس بيوتي">
+        MORE ABOUT LUXE BEAUTY
+        </h2>
 
-/* ─── CURSOR ─── */
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-(function loop(){
-  cursor.style.left=mx+'px';cursor.style.top=my+'px';
-  rx+=(mx-rx)*0.13;ry+=(my-ry)*0.13;
-  ring.style.left=rx+'px';ring.style.top=ry+'px';
-  requestAnimationFrame(loop);
-})();
-document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.75)';ring.style.borderColor='var(--gold-shine)';});
-  el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='var(--gold)';});
-});
+        <p class="translate"
+        data-en="LUXE BEAUTY BY MARO provides premium skincare services with luxury care, modern techniques and elegant results. We focus on beauty, confidence and healthy glowing skin with a professional experience designed to make every client feel special."
+        data-ar="لوكس بيوتي باي مارو تقدم خدمات عناية بالبشرة بمستوى فاخر باستخدام أحدث التقنيات واهتمام احترافي يمنحك بشرة صحية ومشرقة وتجربة راقية تشعرك بالتميز.">
+        LUXE BEAUTY BY MARO provides premium skincare services with luxury care, modern techniques and elegant results.
+        </p>
+      </div>
 
-/* ─── NAVBAR SCROLL ─── */
-const navbar=document.getElementById('navbar');
-window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',scrollY>60));
+    </div>
 
-/* ─── SCROLL REVEAL ─── */
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:0.11});
-function attachReveals(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));}
+  </section>
 
-/* ─── PARTICLES (light gold on white) ─── */
-function initParticles(){
-  const cv=document.getElementById('particles'),ctx=cv.getContext('2d');
-  cv.width=innerWidth;cv.height=innerHeight;
-  window.addEventListener('resize',()=>{cv.width=innerWidth;cv.height=innerHeight;});
-const pts=Array.from({length:55},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.4+0.3,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,a:Math.random()}));
-  (function draw(){
-    ctx.clearRect(0,0,cv.width,cv.height);
-    pts.forEach(p=>{
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0)p.x=cv.width;if(p.x>cv.width)p.x=0;
-      if(p.y<0)p.y=cv.height;if(p.y>cv.height)p.y=0;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=rgba(201,168,76,${0.08+p.a*0.1});ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  })();
-}
+  <!-- BEFORE AFTER -->
+  <section>
 
-/* ─── LOADER ─── */
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hidden'),2300));
+    <div class="section-title">
+      <h2 class="translate"
+      data-en="Before & After"
+      data-ar="قبل وبعد">
+      Before & After
+      </h2>
 
-/* ─── INIT ─── */
-buildServices();
-buildBA();
-buildFeedback();
-initParticles();
-setTimeout(attachReveals,150);
-setTimeout(attachReveals,500);
-</script>
+      <p class="translate"
+      data-en="Real skincare transformation results."
+      data-ar="نتائج حقيقية لتحولات العناية بالبشرة.">
+      Real skincare transformation results.
+      </p>
+    </div>
+
+    <div class="before-after-grid">
+
+      <div class="ba-card">
+        <img src="https://i.imgur.com/yWlQQ9K.jpeg">
+        <h3>Glow Transformation</h3>
+      </div>
+
+      <div class="ba-card">
+        <img src="https://i.imgur.com/xtRNgag.jpeg">
+        <h3>Healthy Skin Result</h3>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FEEDBACK -->
+  <section>
+
+    <div class="section-title">
+      <h2 class="translate"
+      data-en="Client Feedback"
+      data-ar="آراء العملاء">
+      Client Feedback
+      </h2>
+    </div>
+
+    <div class="feedbacks">
+
+      <div class="feedback-card">
+        <div class="stars">★★★★★</div>
+
+        <p class="translate"
+        data-en="Amazing experience and very professional skincare service."
+        data-ar="تجربة رائعة وخدمة احترافية جداً للعناية بالبشرة.">
+        Amazing experience and very professional skincare service.
+        </p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="stars">★★★★★</div>
+
+        <p class="translate"
+        data-en="My skin became brighter and healthier after the sessions."
+        data-ar="بشرتي أصبحت أنقى وأكثر إشراقاً بعد الجلسات.">
+        My skin became brighter and healthier after the sessions.
+        </p>
+      </div>
+
+      <div class="feedback-card">
+        <div class="stars">★★★★★</div>
+
+        <p class="translate"
+        data-en="Luxury atmosphere and beautiful treatment from the team."
+        data-ar="أجواء فاخرة وتعامل راقٍ جداً من الفريق.">
+        Luxury atmosphere and beautiful treatment from the team.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-box"></div>
+
+    <h2>LUXE BEAUTY BY MARO</h2>
+
+    <p class="translate"
+    data-en="Luxury skincare services with confidence and elegance."
+    data-ar="خدمات عناية بالبشرة تجمع بين الفخامة والأناقة والثقة.">
+    Luxury skincare services with confidence and elegance.
+    </p>
+
+    <p>
+      📍 شياح،شارع عبد الكريم خليل
+    </p>
+
+    <p>
+      📞 +961 71 589 542
+    </p>
+
+  </footer>
+
+  <!-- LANGUAGE SCRIPT -->
+  <script>
+
+    let currentLang = "en";
+
+    function toggleLanguage(){
+
+      const elements = document.querySelectorAll(".translate");
+
+      if(currentLang === "en"){
+
+        document.body.classList.add("ar");
+
+        elements.forEach(el=>{
+          el.innerText = el.getAttribute("data-ar");
+        });
+
+        currentLang = "ar";
+
+      }else{
+
+        document.body.classList.remove("ar");
+
+        elements.forEach(el=>{
+          el.innerText = el.getAttribute("data-en");
+        });
+
+        currentLang = "en";
+      }
+    }
+
+  </script>
+
 </body>
-</html>
+                               </html>
